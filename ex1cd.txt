@@ -1,0 +1,51 @@
+import java.util.Scanner;
+import java.util.*;
+
+class DFA{
+
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the string : ");
+		String str = sc.next();
+		int q = 0;
+		int prevq = 0;
+		System.out.print("q0");
+		for(int i = 0;i<str.length();i++)
+		{
+			char ch = str.charAt(i);
+ 			if(ch != 'a' && ch != 'b' && ch != 'c')
+			{
+				System.out.println("The given String is invalid");
+				break;
+			}
+                        prevq = q;
+			switch(q){
+			case 0 : q = ch == 'a' ? 1 : 0;break;
+			case 1 : q = ch == 'b'? 2 : (ch == 'a' ? 1 : 0);break;
+			case 2 : q = ch == 'c'? 3 : (ch == 'a' ? 1 : 0);break;
+			case 3 : q = ch == 'a' ? 1 : 0;break;
+
+
+			}	
+			System.out.print("---> q"+q);
+
+		}
+		System.out.println();
+ 		if (q == 3)
+            		System.out.println("ACCEPTED");
+        	else
+            		System.out.println("NOT ACCEPTED");
+
+
+	}
+}
+
+output:
+
+Enter the string : 
+ababc
+q0---> q1---> q2---> q1---> q2---> q3
+ACCEPTED
+
+
